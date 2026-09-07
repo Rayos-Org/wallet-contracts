@@ -12,7 +12,7 @@ Thank you for your interest in contributing! This is an open-source project in a
 - [Project Conventions](#project-conventions)
 - [Pull Request Process](#pull-request-process)
 - [Reporting Issues](#reporting-issues)
-- [Full Documentation](./docs/README.md)
+- [Full Documentation](./docs/index.md)
 
 ---
 

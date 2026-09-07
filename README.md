@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/stellar/stellar-core/master/docs/stellar-docs/img/stellar-icon.svg" width="80" alt="Stellar Logo">
-
-# Rayos Wallet Contracts
+# Wallet Contracts
 
 **Smart contract wallet infrastructure on Soroban — WebAuthn passkeys, guardian recovery, session keys & spend policies**
 
@@ -227,6 +225,7 @@ wallet-contracts/
 
 | Document | Description |
 |---|---|
+| [Documentation Index](./docs/index.md) | **Start Here:** Directory of all project documentation |
 | [Getting Started](./docs/getting-started.md) | Setup, building, running tests, deploying, TypeScript bindings |
 | [Architecture](./docs/architecture.md) | Design decisions, module breakdown, storage layout, auth model |
 | [API Reference](./docs/api-reference.md) | Full function signatures, parameters, errors for all contracts |
@@ -328,7 +327,9 @@ This project is being released to the open-source community **first on testnet**
 
 We welcome contributions of all kinds — bug reports, feature requests, documentation improvements, and code!
 
-Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a PR.
+- Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a PR.
+- Please review our [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) to ensure a welcoming environment.
+- Check the [CHANGELOG.md](./CHANGELOG.md) for version history.
 
 **Quick start:**
 

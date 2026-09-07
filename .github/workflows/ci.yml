@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        run: rustup show
+      - name: cargo fmt
+        run: cargo fmt --all --check
+      - name: cargo clippy
+        run: cargo clippy --all-targets -- -D warnings
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        run: rustup show
+      - name: cargo test
+        run: cargo test --workspace
+
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install cargo-audit
+        uses: actions-rs/install@v0.1
+        with:
+          crate: cargo-audit
+          version: latest
+      - name: cargo audit
+        run: cargo audit
+
+  wasm-size-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        run: rustup show
+      - name: Build WASM
+        run: cargo wasm-build
+      - name: Check Size
+        run: |
+          # 128KB threshold + headroom = 131072 bytes
+          THRESHOLD=131072
+          for wasm in target/wasm32v1-none/release/*.wasm; do
+            SIZE=$(stat -c%s "$wasm")
+            echo "Size of $wasm is $SIZE bytes"
+            if [ $SIZE -gt $THRESHOLD ]; then
+              echo "Error: $wasm exceeds $THRESHOLD bytes!"
+              exit 1
+            fi
+          done

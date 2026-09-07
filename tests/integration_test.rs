@@ -20,12 +20,12 @@ fn test_full_integration() {
     let wasm_hash = env.deployer().upload_contract_wasm(wallet_wasm::WASM);
 
     // 2. Deploy Factory
-    let factory_id = env.register_contract(None, FactoryContract);
+    let factory_id = env.register(FactoryContract, ());
     let factory = FactoryContractClient::new(&env, &factory_id);
     factory.init(&wasm_hash);
 
     // 3. Deploy Policy
-    let policy_id = env.register_contract(None, PolicyContract);
+    let policy_id = env.register(PolicyContract, ());
     let policy = PolicyContractClient::new(&env, &policy_id);
     let owner = Address::generate(&env);
     policy.init(&owner);

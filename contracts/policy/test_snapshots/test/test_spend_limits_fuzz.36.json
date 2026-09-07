@@ -20,10 +20,10 @@
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M"
                 },
                 {
-                  "i128": "4116"
+                  "i128": "9969"
                 },
                 {
-                  "u64": "43607"
+                  "u64": "7197"
                 }
               ]
             }
@@ -70,7 +70,7 @@
                       "symbol": "amount"
                     },
                     "val": {
-                      "i128": "4116"
+                      "i128": "9969"
                     }
                   },
                   {
@@ -78,7 +78,7 @@
                       "symbol": "current_accumulated"
                     },
                     "val": {
-                      "i128": "2420"
+                      "i128": "4339"
                     }
                   },
                   {
@@ -94,7 +94,7 @@
                       "symbol": "window_secs"
                     },
                     "val": {
-                      "u64": "43607"
+                      "u64": "7197"
                     }
                   }
                 ]

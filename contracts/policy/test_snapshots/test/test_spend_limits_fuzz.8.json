@@ -20,10 +20,10 @@
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M"
                 },
                 {
-                  "i128": "1482"
+                  "i128": "3744"
                 },
                 {
-                  "u64": "39386"
+                  "u64": "6497"
                 }
               ]
             }
@@ -32,6 +32,7 @@
         }
       ]
     ],
+    [],
     []
   ],
   "ledger": {
@@ -69,7 +70,7 @@
                       "symbol": "amount"
                     },
                     "val": {
-                      "i128": "1482"
+                      "i128": "3744"
                     }
                   },
                   {
@@ -77,7 +78,7 @@
                       "symbol": "current_accumulated"
                     },
                     "val": {
-                      "i128": "0"
+                      "i128": "1103"
                     }
                   },
                   {
@@ -93,7 +94,7 @@
                       "symbol": "window_secs"
                     },
                     "val": {
-                      "u64": "39386"
+                      "u64": "6497"
                     }
                   }
                 ]

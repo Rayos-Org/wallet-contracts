@@ -1,14 +1,14 @@
 #![cfg(test)]
 
 use crate::{WalletContract, WalletContractClient};
-use soroban_sdk::{testutils::BytesN as _, Bytes, BytesN, Env};
+use soroban_sdk::{Bytes, Env};
 
 #[test]
 fn test_wallet_initialization() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register_contract(None, WalletContract);
+    let contract_id = env.register(WalletContract, ());
     let client = WalletContractClient::new(&env, &contract_id);
 
     let credential_id = Bytes::from_slice(&env, b"my_credential");
@@ -31,7 +31,7 @@ fn test_add_remove_signer() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register_contract(None, WalletContract);
+    let contract_id = env.register(WalletContract, ());
     let client = WalletContractClient::new(&env, &contract_id);
 
     let cred1 = Bytes::from_slice(&env, b"cred1");

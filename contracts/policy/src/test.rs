@@ -8,7 +8,7 @@ fn test_policy_initialization() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register_contract(None, PolicyContract);
+    let contract_id = env.register(PolicyContract, ());
     let client = PolicyContractClient::new(&env, &contract_id);
 
     let owner = Address::generate(&env);
@@ -34,7 +34,7 @@ fn test_session_keys() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register_contract(None, PolicyContract);
+    let contract_id = env.register(PolicyContract, ());
     let client = PolicyContractClient::new(&env, &contract_id);
 
     let owner = Address::generate(&env);
@@ -63,7 +63,7 @@ fn test_allow_list() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register_contract(None, PolicyContract);
+    let contract_id = env.register(PolicyContract, ());
     let client = PolicyContractClient::new(&env, &contract_id);
 
     let owner = Address::generate(&env);
@@ -88,7 +88,7 @@ fn test_guardian_recovery() {
     let env = Env::default();
     env.mock_all_auths();
 
-    let contract_id = env.register_contract(None, PolicyContract);
+    let contract_id = env.register(PolicyContract, ());
     let client = PolicyContractClient::new(&env, &contract_id);
 
     let owner = Address::generate(&env);
@@ -126,7 +126,7 @@ proptest! {
         let env = Env::default();
         env.mock_all_auths();
 
-        let contract_id = env.register_contract(None, PolicyContract);
+        let contract_id = env.register(PolicyContract, ());
         let client = PolicyContractClient::new(&env, &contract_id);
 
         let owner = Address::generate(&env);

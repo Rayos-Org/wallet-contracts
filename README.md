@@ -203,7 +203,7 @@ wallet-contracts/
 |---|---|---|
 | **Factory** | `CCCAMWJOF7IYTVCU7SR6HFTNH5XRMDMWPYN464NY5BCKUPMUM64RZ5CH` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CCCAMWJOF7IYTVCU7SR6HFTNH5XRMDMWPYN464NY5BCKUPMUM64RZ5CH) |
 | **Policy** | `CCDM3O2SXX3E24MCWLRK5YBVQHJCA4OQKJFF6KWCK6FHZS65DGMT6DOY` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CCDM3O2SXX3E24MCWLRK5YBVQHJCA4OQKJFF6KWCK6FHZS65DGMT6DOY) |
-| **Wallet (WASM hash)** | `8c2e77ad251a8e32590280c95627fd24864f1ff1917d781e44510f450445d7c6` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/8c2e77ad251a8e32590280c95627fd24864f1ff1917d781e44510f450445d7c6) |
+| **Wallet (WASM Hash)** | `8c2e77ad251a8e32590280c95627fd24864f1ff1917d781e44510f450445d7c6` | [View Upload Tx](https://stellar.expert/explorer/testnet/tx/87d1ee48ae9f4b616fea84681d5094201765a8bee84ed5686a39a87bc7985b2d) |
 
 > **Mainnet**: Not yet deployed. This project is currently in open testnet. See our [community process](#-community--roadmap).
 

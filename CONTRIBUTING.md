@@ -9,6 +9,7 @@ Thank you for your interest in contributing! This is an open-source project in a
 - [Code of Conduct](#code-of-conduct)
 - [How to Contribute](#how-to-contribute)
 - [Development Setup](#development-setup)
+- [Setup Runbook (SETUP.md)](./SETUP.md)
 - [Project Conventions](#project-conventions)
 - [Pull Request Process](#pull-request-process)
 - [Reporting Issues](#reporting-issues)
@@ -38,6 +39,9 @@ We welcome contributions in several forms:
 ---
 
 ## Development Setup
+
+> [!TIP]
+> For an end-to-end guide on installing toolchains, deploying locally or on testnet, and troubleshooting, see [SETUP.md](./SETUP.md).
 
 ### Prerequisites
 

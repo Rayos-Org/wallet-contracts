@@ -6,7 +6,6 @@
 .vscode/
 *.swp
 **/*.rs.bk
-/scripts/
 
 # Environment
 .env

@@ -10,6 +10,7 @@
 [![Protocol](https://img.shields.io/badge/stellar-protocol%2027-blue?style=for-the-badge&logo=stellar)](https://developers.stellar.org)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green?style=for-the-badge)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](./CONTRIBUTING.md)
+[![Setup Guide](https://img.shields.io/badge/Setup-Guide-blue?style=for-the-badge)](./SETUP.md)
 
 </div>
 
@@ -183,8 +184,8 @@ wallet-contracts/
 ├── scripts/
 │   ├── deploy_testnet.sh       # One-shot testnet deployment
 │   └── generate_bindings.sh    # TypeScript binding generation
-├── docs/
-│   └── threat-model.md         # Security threat model & mitigations
+├── docs/                       # Technical & architectural documentation
+├── SETUP.md                    # Step-by-step developer onboarding & runbook
 ├── MIGRATION.md                # CAP-0071 / CAP-0072 upgrade roadmap
 ├── CONTRIBUTING.md
 ├── SECURITY.md
@@ -203,6 +204,7 @@ wallet-contracts/
 |---|---|---|
 | **Factory** | `CCCAMWJOF7IYTVCU7SR6HFTNH5XRMDMWPYN464NY5BCKUPMUM64RZ5CH` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CCCAMWJOF7IYTVCU7SR6HFTNH5XRMDMWPYN464NY5BCKUPMUM64RZ5CH) |
 | **Policy** | `CCDM3O2SXX3E24MCWLRK5YBVQHJCA4OQKJFF6KWCK6FHZS65DGMT6DOY` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CCDM3O2SXX3E24MCWLRK5YBVQHJCA4OQKJFF6KWCK6FHZS65DGMT6DOY) |
+| **Demo Wallet** | `CAIIUPVI5VO2BCXKPUIRZX4BW4YQ6G6FWPJEWVKIVRN4H3KWJTUV3VXM` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CAIIUPVI5VO2BCXKPUIRZX4BW4YQ6G6FWPJEWVKIVRN4H3KWJTUV3VXM) |
 | **Wallet (WASM Hash)** | `8c2e77ad251a8e32590280c95627fd24864f1ff1917d781e44510f450445d7c6` | [View Upload Tx](https://stellar.expert/explorer/testnet/tx/87d1ee48ae9f4b616fea84681d5094201765a8bee84ed5686a39a87bc7985b2d) |
 
 > **Mainnet**: Not yet deployed. This project is currently in open testnet. See our [community process](#-community--roadmap).
@@ -226,6 +228,7 @@ wallet-contracts/
 | Document | Description |
 |---|---|
 | [Documentation Index](./docs/index.md) | **Start Here:** Directory of all project documentation |
+| [Environment Setup Guide](./SETUP.md) | **Developer Runbook:** Prerequisites, building, testnet deploy & troubleshooting |
 | [Getting Started](./docs/getting-started.md) | Setup, building, running tests, deploying, TypeScript bindings |
 | [Architecture](./docs/architecture.md) | Design decisions, module breakdown, storage layout, auth model |
 | [API Reference](./docs/api-reference.md) | Full function signatures, parameters, errors for all contracts |
@@ -236,6 +239,9 @@ wallet-contracts/
 ---
 
 ## 🚀 Getting Started
+
+> [!TIP]
+> For a full walkthrough including toolchain setup, manual contract invocation, and troubleshooting, see the [SETUP.md](./SETUP.md) guide.
 
 ### Prerequisites
 
@@ -328,6 +334,7 @@ This project is being released to the open-source community **first on testnet**
 We welcome contributions of all kinds — bug reports, feature requests, documentation improvements, and code!
 
 - Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a PR.
+- Follow [SETUP.md](./SETUP.md) for local environment setup and testing runbook.
 - Please review our [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) to ensure a welcoming environment.
 - Check the [CHANGELOG.md](./CHANGELOG.md) for version history.
 

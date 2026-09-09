@@ -6,6 +6,7 @@ Welcome to the Rayos Wallet Contracts documentation. Start here to find the righ
 
 | Document | Audience | Description |
 |---|---|---|
+| [Environment Setup](../SETUP.md) | **Developers / operators** | Prerequisites, toolchain setup, build runbook, testnet deployment |
 | [Getting Started](./getting-started.md) | **New developers** | Setup, building, running tests, deploying to testnet, TypeScript bindings |
 | [Architecture](./architecture.md) | **Contributors / auditors** | Design philosophy, module breakdown, storage layout, auth model, cross-contract communication |
 | [API Reference](./api-reference.md) | **Integrators / dApp devs** | Every function, parameter, return type, and error code across all three contracts |

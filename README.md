@@ -198,14 +198,14 @@ wallet-contracts/
 
 ## 🌐 Deployed Contracts (Testnet)
 
-> Testnet contracts are deployed on Stellar Testnet. Addresses will be updated after the initial community deployment.
+> Testnet contracts are deployed on Stellar Testnet. The factory currently deploys wallet WASM `69fc5b0d…` (full WebAuthn verification); the hash is also kept in `.wallet-wasm-hash`.
 
 | Contract | Testnet Address | Explorer |
 |---|---|---|
 | **Factory** | `CCCAMWJOF7IYTVCU7SR6HFTNH5XRMDMWPYN464NY5BCKUPMUM64RZ5CH` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CCCAMWJOF7IYTVCU7SR6HFTNH5XRMDMWPYN464NY5BCKUPMUM64RZ5CH) |
 | **Policy** | `CCDM3O2SXX3E24MCWLRK5YBVQHJCA4OQKJFF6KWCK6FHZS65DGMT6DOY` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CCDM3O2SXX3E24MCWLRK5YBVQHJCA4OQKJFF6KWCK6FHZS65DGMT6DOY) |
 | **Demo Wallet** | `CAIIUPVI5VO2BCXKPUIRZX4BW4YQ6G6FWPJEWVKIVRN4H3KWJTUV3VXM` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CAIIUPVI5VO2BCXKPUIRZX4BW4YQ6G6FWPJEWVKIVRN4H3KWJTUV3VXM) |
-| **Wallet (WASM Hash)** | `8c2e77ad251a8e32590280c95627fd24864f1ff1917d781e44510f450445d7c6` | [View Upload Tx](https://stellar.expert/explorer/testnet/tx/87d1ee48ae9f4b616fea84681d5094201765a8bee84ed5686a39a87bc7985b2d) |
+| **Wallet (WASM Hash)** | `69fc5b0d5ead9f943dc63cc2e6e8889b7c4ee1c5c1aa5192f89cf5b9fbb113aa` | [Factory re-init tx](https://stellar.expert/explorer/testnet/tx/3af0dee5cd24e299f0ebc25b924cf1db0ed4acf5284c0cdfd37055108f9512e0) |
 
 > **Mainnet**: Not yet deployed. This project is currently in open testnet. See our [community process](#-community--roadmap).
 

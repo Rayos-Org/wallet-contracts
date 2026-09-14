@@ -101,9 +101,15 @@ Called by the Soroban host for every transaction this account authorises. Verifi
 
 | Parameter | Type | Description |
 |---|---|---|
-| `signature_payload` | `Hash<32>` | SHA-256 hash of the transaction envelope, provided by the host |
-| `signature` | `WebAuthnSignature` | `{ credential_id: Bytes, signature: BytesN<64> }` |
+| `signature_payload` | `Hash<32>` | Hash of the Soroban authorization entry (call, nonce, expiry, network), provided by the host |
+| `signature` | `WebAuthnSignature` | `{ credential_id: Bytes, authenticator_data: Bytes, client_data_json: Bytes, signature: BytesN<64> }` — a full WebAuthn assertion; `signature` is raw `r ‖ s`, low-S normalised |
 | `auth_contexts` | `Vec<Context>` | Transaction contexts (used for future policy checks) |
+
+**Verification steps**
+1. Look up the signer by `credential_id` (`SignerNotFound` if absent).
+2. Require `client_data_json` to contain `"challenge":"<base64url(signature_payload)>"` — binds the passkey assertion to this exact auth entry.
+3. `msg = SHA-256(authenticator_data ‖ SHA-256(client_data_json))` — exactly what the authenticator signed.
+4. `secp256r1_verify(public_key, msg, signature)`.
 
 **Errors**: `SignerNotFound`, `InvalidSignature`
 

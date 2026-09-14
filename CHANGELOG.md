@@ -11,6 +11,23 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and 
 ### Added
 - Initial community testnet release
 
+## [0.6.0] — 2026-09-14 · Real WebAuthn verification
+
+### Changed
+- `__check_auth` now verifies a full WebAuthn assertion instead of a raw P-256
+  signature over the payload: the signature is
+  `{ credential_id, authenticator_data, client_data_json, signature }`, the
+  contract checks that `clientDataJSON` contains
+  `"challenge":"<base64url(payload)>"`, hashes
+  `authenticator_data ‖ SHA-256(client_data_json)` and calls `secp256r1_verify`
+  against the registered 65-byte uncompressed key.
+- Wallet WASM re-uploaded (`69fc5b0d…`) and the testnet factory re-initialised
+  with it.
+
+### Added
+- `test_check_auth_accepts_real_webauthn_signature` — signs with `p256` in the
+  test and drives `env.try_invoke_contract_check_auth`.
+
 ---
 
 ## [0.5.0] — 2026-09-08 · Phase 5: Scripts, Bindings & CI

@@ -8,6 +8,9 @@ soroban-sdk = { workspace = true }
 
 [dev-dependencies]
 soroban-sdk = { workspace = true, features = ["testutils"] }
+p256 = { version = "0.13", features = ["ecdsa"] }
+sha2 = "0.10"
+base64 = "0.22"
 
 [lib]
 crate-type = ["cdylib", "rlib"]

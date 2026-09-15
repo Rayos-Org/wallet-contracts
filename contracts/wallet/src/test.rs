@@ -75,7 +75,10 @@ fn test_check_auth_accepts_real_webauthn_signature() {
     assert_eq!(pk_uncompressed.as_bytes().len(), 65);
 
     let credential_id = Bytes::from_slice(&env, b"passkey-raw-id");
-    client.init(&credential_id, &Bytes::from_slice(&env, pk_uncompressed.as_bytes()));
+    client.init(
+        &credential_id,
+        &Bytes::from_slice(&env, pk_uncompressed.as_bytes()),
+    );
 
     // The Soroban signature payload the passkey is asked to authorise.
     let payload = [7u8; 32];
@@ -155,10 +158,22 @@ fn test_check_auth_decodes_signature_from_raw_map() {
     let sig = sig.normalize_s().unwrap_or(sig);
 
     let mut map: Map<Symbol, Val> = Map::new(&env);
-    map.set(Symbol::new(&env, "authenticator_data"), Bytes::from_slice(&env, &auth_data).into_val(&env));
-    map.set(Symbol::new(&env, "client_data_json"), Bytes::from_slice(&env, cdj.as_bytes()).into_val(&env));
-    map.set(Symbol::new(&env, "credential_id"), credential_id.into_val(&env));
-    map.set(Symbol::new(&env, "signature"), BytesN::<64>::from_array(&env, &sig.to_bytes().into()).into_val(&env));
+    map.set(
+        Symbol::new(&env, "authenticator_data"),
+        Bytes::from_slice(&env, &auth_data).into_val(&env),
+    );
+    map.set(
+        Symbol::new(&env, "client_data_json"),
+        Bytes::from_slice(&env, cdj.as_bytes()).into_val(&env),
+    );
+    map.set(
+        Symbol::new(&env, "credential_id"),
+        credential_id.into_val(&env),
+    );
+    map.set(
+        Symbol::new(&env, "signature"),
+        BytesN::<64>::from_array(&env, &sig.to_bytes().into()).into_val(&env),
+    );
 
     let contexts: SVec<Context> = SVec::new(&env);
     let res = env.try_invoke_contract_check_auth::<ContractError>(
@@ -167,5 +182,9 @@ fn test_check_auth_decodes_signature_from_raw_map() {
         map.into_val(&env),
         &contexts,
     );
-    assert!(res.is_ok(), "raw-map signature must decode and verify: {:?}", res);
+    assert!(
+        res.is_ok(),
+        "raw-map signature must decode and verify: {:?}",
+        res
+    );
 }

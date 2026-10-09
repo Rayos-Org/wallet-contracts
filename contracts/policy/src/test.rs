@@ -18,15 +18,15 @@ fn test_policy_initialization() {
 
     // Test Spend Limits
     let token = Address::generate(&env);
-    client.set_spend_limit(&token, &1000, &3600); // 1000 units, 1 hour
+    client.set_spend_limit(&owner, &token, &1000, &3600); // 1000 units, 1 hour
 
     // Check spend
-    client.check_spend(&token, &500); // ok
-    client.check_spend(&token, &500); // ok
+    client.check_spend(&owner, &token, &500); // ok
+    client.check_spend(&owner, &token, &500); // ok
 
     // Should fail if we exceed (in Soroban test, we would normally expect a panic, but check_spend returns a Result which the SDK test client handles)
     // Actually, in Rust tests the client unwraps the Result and panics on Err.
-    // So if we do client.check_spend(&token, &1) it will panic, meaning it correctly prevents spend.
+    // So if we do client.check_spend(&owner, &token, &1) it will panic, meaning it correctly prevents spend.
 }
 
 #[test]
@@ -133,17 +133,17 @@ proptest! {
         client.init(&owner);
         let token = Address::generate(&env);
 
-        client.set_spend_limit(&token, &limit_amount, &window_secs);
+        client.set_spend_limit(&owner, &token, &limit_amount, &window_secs);
 
         // Check first spend
-        let res1 = client.try_check_spend(&token, &spend1);
+        let res1 = client.try_check_spend(&owner, &token, &spend1);
         if spend1 > limit_amount {
             assert!(res1.is_err());
         } else {
             assert!(res1.is_ok());
 
             // Check second spend
-            let res2 = client.try_check_spend(&token, &spend2);
+            let res2 = client.try_check_spend(&owner, &token, &spend2);
             if spend1 + spend2 > limit_amount {
                 assert!(res2.is_err());
             } else {
@@ -152,3 +152,4 @@ proptest! {
         }
     }
 }
+

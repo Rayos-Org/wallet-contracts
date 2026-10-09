@@ -4,7 +4,7 @@ use soroban_sdk::{
     auth::{Context, CustomAccountInterface},
     contract, contractimpl,
     crypto::Hash,
-    Address, Bytes, Env, Map, Vec,
+    Address, Bytes, Env, IntoVal, Map, Vec,
 };
 
 mod auth;
@@ -37,7 +37,33 @@ impl CustomAccountInterface for WalletContract {
         extend_instance_ttl(&env);
         verify_signature(&env, &signature_payload, &signature)?;
 
-        // TODO: In Phase 2, we will call the active Policy contract if one is set.
+        if let Some(policy_address) = env
+            .storage()
+            .instance()
+            .get::<_, Address>(&DataKey::PolicyAddress)
+        {
+            for context in _auth_contexts.iter() {
+                if let Context::Contract(contract_ctx) = context {
+                    if contract_ctx.fn_name == soroban_sdk::symbol_short!("transfer") {
+                        let token = contract_ctx.contract.clone();
+                        if contract_ctx.args.len() == 3 {
+                            let amount: i128 = contract_ctx.args.get(2).unwrap().into_val(&env);
+                            let caller = env.current_contract_address();
+                            env.invoke_contract::<()>(
+                                &policy_address,
+                                &soroban_sdk::Symbol::new(&env, "check_spend"),
+                                soroban_sdk::vec![
+                                    &env,
+                                    caller.to_val(),
+                                    token.to_val(),
+                                    amount.into_val(&env)
+                                ],
+                            );
+                        }
+                    }
+                }
+            }
+        }
 
         Ok(())
     }

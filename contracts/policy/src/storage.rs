@@ -8,8 +8,8 @@ pub(crate) const INSTANCE_LIFETIME_THRESHOLD: u32 = INSTANCE_BUMP_AMOUNT - DAY_I
 #[derive(Clone)]
 pub enum DataKey {
     Owner,
-    SpendLimit(Address), // token address -> SpendLimit
-    SessionKey(Bytes),   // session_id -> SessionKey
+    SpendLimit(Address, Address), // token address -> SpendLimit
+    SessionKey(Bytes),            // session_id -> SessionKey
     AllowList(Address),
     AllowListEnabled,
     Guardian(Address),

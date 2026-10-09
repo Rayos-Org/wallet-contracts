@@ -30,17 +30,23 @@ impl PolicyContract {
 
     pub fn set_spend_limit(
         env: Env,
+        wallet: Address,
         token: Address,
         amount: i128,
         window_secs: u64,
     ) -> Result<(), ContractError> {
-        let owner: Address = env.storage().instance().get(&DataKey::Owner).unwrap();
-        owner.require_auth();
-        spend_limits::set_spend_limit(&env, token, amount, window_secs)
+        wallet.require_auth();
+        spend_limits::set_spend_limit(&env, wallet, token, amount, window_secs)
     }
 
-    pub fn check_spend(env: Env, token: Address, spend_amount: i128) -> Result<(), ContractError> {
-        spend_limits::check_spend(&env, token, spend_amount)
+    pub fn check_spend(
+        env: Env,
+        wallet: Address,
+        token: Address,
+        spend_amount: i128,
+    ) -> Result<(), ContractError> {
+        wallet.require_auth();
+        spend_limits::check_spend(&env, wallet, token, spend_amount)
     }
 
     pub fn create_session_key(

@@ -17,13 +17,16 @@
               "function_name": "set_spend_limit",
               "args": [
                 {
+                  "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFCT4"
+                },
+                {
                   "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M"
                 },
                 {
-                  "i128": "8859"
+                  "i128": "1354"
                 },
                 {
-                  "u64": "77526"
+                  "u64": "18716"
                 }
               ]
             }
@@ -32,7 +35,6 @@
         }
       ]
     ],
-    [],
     []
   ],
   "ledger": {
@@ -58,6 +60,9 @@
                     "symbol": "SpendLimit"
                   },
                   {
+                    "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFCT4"
+                  },
+                  {
                     "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M"
                   }
                 ]
@@ -70,7 +75,7 @@
                       "symbol": "amount"
                     },
                     "val": {
-                      "i128": "8859"
+                      "i128": "1354"
                     }
                   },
                   {
@@ -78,7 +83,7 @@
                       "symbol": "current_accumulated"
                     },
                     "val": {
-                      "i128": "3378"
+                      "i128": "0"
                     }
                   },
                   {
@@ -94,7 +99,7 @@
                       "symbol": "window_secs"
                     },
                     "val": {
-                      "u64": "77526"
+                      "u64": "18716"
                     }
                   }
                 ]

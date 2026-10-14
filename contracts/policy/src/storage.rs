@@ -8,15 +8,15 @@ pub(crate) const INSTANCE_LIFETIME_THRESHOLD: u32 = INSTANCE_BUMP_AMOUNT - DAY_I
 #[derive(Clone)]
 pub enum DataKey {
     Owner,
-    SpendLimit(Address, Address), // token address -> SpendLimit
+    SpendLimit(Address, Address), // (wallet, token) -> SpendLimit
     SessionKey(Bytes),            // session_id -> SessionKey
     AllowList(Address),
     AllowListEnabled,
-    Guardian(Address),
-    RecoveryThreshold,
-    RecoveryProposal(u64), // proposal_id -> RecoveryProposal
-    ProposalCounter,
-    RecoveryTimelock, // delay in seconds
+    Guardian(Address, Address),     // (wallet, guardian) -> bool
+    RecoveryThreshold(Address),     // wallet -> u32
+    RecoveryProposal(Address, u64), // (wallet, proposal_id) -> RecoveryProposal
+    ProposalCounter(Address),       // wallet -> u64
+    RecoveryTimelock(Address),      // wallet -> u64
 }
 
 #[contracttype]

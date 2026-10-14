@@ -49,6 +49,14 @@ impl PolicyContract {
         spend_limits::check_spend(&env, wallet, token, spend_amount)
     }
 
+    pub fn get_spend_limit(
+        env: Env,
+        wallet: Address,
+        token: Address,
+    ) -> Option<storage::SpendLimit> {
+        spend_limits::get_spend_limit(&env, wallet, token)
+    }
+
     pub fn create_session_key(
         env: Env,
         session_id: Bytes,
@@ -87,45 +95,55 @@ impl PolicyContract {
         allow_lists::check_allow_list(&env, target)
     }
 
-    pub fn add_guardian(env: Env, guardian: Address) -> Result<(), ContractError> {
-        let owner: Address = env.storage().instance().get(&DataKey::Owner).unwrap();
-        owner.require_auth();
-        guardians::add_guardian(&env, guardian)
+    pub fn add_guardian(env: Env, wallet: Address, guardian: Address) -> Result<(), ContractError> {
+        guardians::add_guardian(&env, wallet, guardian)
     }
 
-    pub fn remove_guardian(env: Env, guardian: Address) -> Result<(), ContractError> {
-        let owner: Address = env.storage().instance().get(&DataKey::Owner).unwrap();
-        owner.require_auth();
-        guardians::remove_guardian(&env, guardian)
+    pub fn remove_guardian(
+        env: Env,
+        wallet: Address,
+        guardian: Address,
+    ) -> Result<(), ContractError> {
+        guardians::remove_guardian(&env, wallet, guardian)
     }
 
-    pub fn set_recovery_threshold(env: Env, threshold: u32) -> Result<(), ContractError> {
-        let owner: Address = env.storage().instance().get(&DataKey::Owner).unwrap();
-        owner.require_auth();
-        guardians::set_recovery_threshold(&env, threshold)
+    pub fn is_guardian(env: Env, wallet: Address, guardian: Address) -> bool {
+        guardians::is_guardian(&env, wallet, guardian)
     }
 
-    pub fn set_recovery_timelock(env: Env, delay_secs: u64) -> Result<(), ContractError> {
-        let owner: Address = env.storage().instance().get(&DataKey::Owner).unwrap();
-        owner.require_auth();
-        guardians::set_recovery_timelock(&env, delay_secs)
+    pub fn set_recovery_threshold(
+        env: Env,
+        wallet: Address,
+        threshold: u32,
+    ) -> Result<(), ContractError> {
+        guardians::set_recovery_threshold(&env, wallet, threshold)
+    }
+
+    pub fn set_recovery_timelock(
+        env: Env,
+        wallet: Address,
+        delay_secs: u64,
+    ) -> Result<(), ContractError> {
+        guardians::set_recovery_timelock(&env, wallet, delay_secs)
     }
 
     pub fn propose_recovery(
         env: Env,
+        wallet: Address,
         caller: Address,
         new_credential_id: Bytes,
         new_public_key: Bytes,
     ) -> Result<u64, ContractError> {
-        guardians::propose_recovery(&env, caller, new_credential_id, new_public_key)
+        guardians::propose_recovery(&env, wallet, caller, new_credential_id, new_public_key)
     }
 
     pub fn approve_recovery(
         env: Env,
+        wallet: Address,
         caller: Address,
         proposal_id: u64,
     ) -> Result<(), ContractError> {
-        guardians::approve_recovery(&env, caller, proposal_id)
+        guardians::approve_recovery(&env, wallet, caller, proposal_id)
     }
 
     pub fn execute_recovery(
@@ -134,5 +152,21 @@ impl PolicyContract {
         proposal_id: u64,
     ) -> Result<(), ContractError> {
         guardians::execute_recovery(&env, wallet, proposal_id)
+    }
+
+    pub fn cancel_recovery(
+        env: Env,
+        wallet: Address,
+        proposal_id: u64,
+    ) -> Result<(), ContractError> {
+        guardians::cancel_recovery(&env, wallet, proposal_id)
+    }
+
+    pub fn get_recovery_status(
+        env: Env,
+        wallet: Address,
+        proposal_id: u64,
+    ) -> Option<storage::RecoveryProposal> {
+        guardians::get_recovery_status(&env, wallet, proposal_id)
     }
 }

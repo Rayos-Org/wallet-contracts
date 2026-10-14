@@ -67,3 +67,9 @@ pub fn check_spend(
 
     Ok(())
 }
+
+pub fn get_spend_limit(env: &Env, wallet: Address, token: Address) -> Option<SpendLimit> {
+    extend_instance_ttl(env);
+    let key = DataKey::SpendLimit(wallet, token);
+    env.storage().persistent().get(&key)
+}

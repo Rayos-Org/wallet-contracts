@@ -94,22 +94,31 @@ fn test_guardian_recovery() {
     let owner = Address::generate(&env);
     client.init(&owner);
 
+    let wallet = Address::generate(&env);
     let g1 = Address::generate(&env);
     let g2 = Address::generate(&env);
 
-    client.add_guardian(&g1);
-    client.add_guardian(&g2);
+    client.add_guardian(&wallet, &g1);
+    client.add_guardian(&wallet, &g2);
 
-    client.set_recovery_threshold(&2);
-    client.set_recovery_timelock(&0); // 0 timelock for test
+    assert!(client.is_guardian(&wallet, &g1));
+    assert!(client.is_guardian(&wallet, &g2));
+
+    client.set_recovery_threshold(&wallet, &2);
+    client.set_recovery_timelock(&wallet, &0); // 0 timelock for test
 
     let new_cred = Bytes::from_slice(&env, b"new_cred");
     let new_pub = Bytes::from_slice(&env, &[1; 65]);
 
-    let proposal_id = client.propose_recovery(&g1, &new_cred, &new_pub);
-    client.approve_recovery(&g2, &proposal_id);
+    let proposal_id = client.propose_recovery(&wallet, &g1, &new_cred, &new_pub);
+    client.approve_recovery(&wallet, &g2, &proposal_id);
 
-    // We mock a wallet address to execute recovery
+    let status = client.get_recovery_status(&wallet, &proposal_id);
+    assert!(status.is_some());
+
+    // Test cancel
+    let proposal_id2 = client.propose_recovery(&wallet, &g1, &new_cred, &new_pub);
+    client.cancel_recovery(&wallet, &proposal_id2);
 }
 
 use proptest::prelude::*;
@@ -152,4 +161,3 @@ proptest! {
         }
     }
 }
-
